@@ -30,6 +30,7 @@ import be.yildizgames.module.audio.AudioEngine;
 import be.yildizgames.module.audio.Music;
 import be.yildizgames.module.audio.Playlist;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.material.Material;
@@ -148,7 +149,7 @@ public final class FileParser {
      */
     private void buildView(final ContainerDefinition def) {
         final Container container = graphicEngine
-                .getGuiBuilder()
+                .getGuiFactory()
                 .container()
                 .withName(def.getName())
                 .withBackground(def.getMaterial())
@@ -156,7 +157,7 @@ public final class FileParser {
                 .build();
 
         def.getImageList().forEach(id -> graphicEngine
-                .getGuiBuilder()
+                .getGuiFactory()
                 .image()
                 .withName(id.getName())
                 .withBackground(id.getMaterial())
@@ -164,7 +165,7 @@ public final class FileParser {
                 .build(container));
 
         def.getTextLineList().forEach(td -> graphicEngine
-                .getGuiBuilder()
+                .getGuiFactory()
                 .textLine()
                 .withName(td.getName())
                 .withCoordinates(td.getCoordinates())
@@ -172,7 +173,7 @@ public final class FileParser {
                 .build(container));
 
         def.getButtonList().forEach(bd -> graphicEngine
-                .getGuiBuilder()
+                .getGuiFactory()
                 .button()
                 .withName(bd.getName())
                 .withCoordinates(bd.getCoordinates())
@@ -185,7 +186,7 @@ public final class FileParser {
 
         def.getInputBoxList().forEach(ibd ->
                 graphicEngine
-                        .getGuiBuilder()
+                        .getGuiFactory()
                         .inputBox()
                         .withName(ibd.getName())
                         .withCoordinates(ibd.getCoordinates())
@@ -197,7 +198,7 @@ public final class FileParser {
                         .build(container));
 
         def.getTextAreaList().forEach(tad -> graphicEngine
-                .getGuiBuilder()
+                .getGuiFactory()
                 .textArea()
                 .withName(tad.getName())
                 .withCoordinates(tad.getCoordinates())

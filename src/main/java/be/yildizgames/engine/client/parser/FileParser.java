@@ -25,7 +25,6 @@
 
 package be.yildizgames.engine.client.parser;
 
-import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.module.audio.AudioEngine;
 import be.yildizgames.module.audio.Music;
 import be.yildizgames.module.audio.Playlist;
@@ -36,6 +35,7 @@ import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.TextureUnit;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -50,7 +50,7 @@ import java.util.stream.Stream;
  */
 public final class FileParser {
 
-    private static final Logger LOGGER = LogFactory.getInstance().getLogger(FileParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileParser.class);
 
     /**
      * Create the parser used to read the definition scripts.

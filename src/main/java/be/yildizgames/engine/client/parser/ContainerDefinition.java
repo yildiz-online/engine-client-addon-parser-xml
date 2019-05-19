@@ -39,6 +39,7 @@ import java.util.List;
  */
 public final class ContainerDefinition extends GuiCommonDefinition {
 
+
     /**
      * List of children image widget.
      */

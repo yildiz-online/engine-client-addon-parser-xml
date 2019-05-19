@@ -43,5 +43,4 @@ public interface FontParser {
      * @return A list containing Extracted data.
      */
     List<FontDefinition> parse(Path file);
-
 }

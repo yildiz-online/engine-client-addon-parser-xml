@@ -53,11 +53,11 @@ public final class MusicDefinition {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getFile() {
-        return file;
+        return this.file;
     }
 
     public void setName(String name) {

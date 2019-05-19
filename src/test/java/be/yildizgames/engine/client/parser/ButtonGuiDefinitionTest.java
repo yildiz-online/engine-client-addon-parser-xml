@@ -36,6 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 final class ButtonGuiDefinitionTest {
 
+
     /***/
     @Test
     public void testButtonDefinition() {

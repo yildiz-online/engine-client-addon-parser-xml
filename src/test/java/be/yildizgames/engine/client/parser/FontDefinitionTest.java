@@ -36,6 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 final class FontDefinitionTest {
 
+
     @Nested
     class Constructor {
 

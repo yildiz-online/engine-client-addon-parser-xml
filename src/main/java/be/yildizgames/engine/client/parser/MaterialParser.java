@@ -43,5 +43,4 @@ public interface MaterialParser {
      * @return A list containing Extracted data.
      */
     List<SimpleMaterialDefinition> parse(Path file);
-
 }

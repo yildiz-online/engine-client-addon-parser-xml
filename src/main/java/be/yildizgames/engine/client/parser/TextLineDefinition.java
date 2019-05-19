@@ -49,7 +49,7 @@ public final class TextLineDefinition extends GuiCommonDefinition {
     }
 
     public String getFont() {
-        return font;
+        return this.font;
     }
 
     public void setFont(String font) {

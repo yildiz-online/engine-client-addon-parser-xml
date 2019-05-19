@@ -112,4 +112,5 @@ final class XmlMaterialParser implements MaterialParser {
         }
         return resultList;
     }
+
 }

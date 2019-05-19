@@ -34,7 +34,6 @@ import be.yildizgames.module.window.ScreenSize;
  * @author Grégory Van den Borre
  */
 public final class ButtonDefinition extends GuiCommonDefinition {
-
     //FIXME MEDIUM this package should move in graphic module
 
     /**

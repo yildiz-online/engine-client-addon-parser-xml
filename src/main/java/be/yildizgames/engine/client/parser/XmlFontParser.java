@@ -80,4 +80,5 @@ final class XmlFontParser implements FontParser {
         }
         return result;
     }
+
 }

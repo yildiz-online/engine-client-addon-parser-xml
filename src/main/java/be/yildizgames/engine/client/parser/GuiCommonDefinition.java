@@ -39,6 +39,7 @@ import java.util.Map;
  */
 class GuiCommonDefinition {
 
+
     /**
      * Keep a record of all GUI definition.
      */

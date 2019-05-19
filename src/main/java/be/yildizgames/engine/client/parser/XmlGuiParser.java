@@ -280,4 +280,5 @@ final class XmlGuiParser implements GuiParser {
         }
         return resultList;
     }
+
 }

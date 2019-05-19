@@ -57,6 +57,6 @@ public final class ImageDefinition extends GuiCommonDefinition {
     }
 
     public Material getMaterial() {
-        return material;
+        return this.material;
     }
 }

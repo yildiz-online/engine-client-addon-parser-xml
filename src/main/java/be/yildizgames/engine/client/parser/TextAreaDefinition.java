@@ -70,4 +70,5 @@ public final class TextAreaDefinition extends GuiCommonDefinition {
     public void setFont(String font) {
         this.font = font;
     }
+
 }

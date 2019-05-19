@@ -73,14 +73,14 @@ public final class InputBoxDefinition extends GuiCommonDefinition {
     }
 
     public Material getMaterial() {
-        return material;
+        return this.material;
     }
 
     public Material getMaterialHighlight() {
-        return materialHighlight;
+        return this.materialHighlight;
     }
 
     public Font getFont() {
-        return font;
+        return this.font;
     }
 }

@@ -50,6 +50,7 @@ import java.util.stream.Stream;
  */
 public final class FileParser {
 
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FileParser.class);
 
     /**

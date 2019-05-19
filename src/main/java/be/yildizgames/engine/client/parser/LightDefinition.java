@@ -198,4 +198,5 @@ final class LightDefinition {
         }
         this.type = type;
     }
+
 }

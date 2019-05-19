@@ -33,6 +33,7 @@ package be.yildizgames.engine.client.parser;
  */
 public final class FontDefinition {
 
+
     /**
      * Font height.
      */

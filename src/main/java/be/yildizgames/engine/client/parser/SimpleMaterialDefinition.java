@@ -229,4 +229,5 @@ public final class SimpleMaterialDefinition {
     public void setPath2(String path2) {
         this.path2 = path2;
     }
+
 }

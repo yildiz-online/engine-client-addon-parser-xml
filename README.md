@@ -11,7 +11,7 @@ This library is an addon for the engine client, providing the ability to parse s
 
 ## Requirements
 
-To build this module, you will need the latest java JDK and Maven 3.
+To build this module, you will need the latest Java JDK and Maven 3.
 
 ## Coding Style and other information
 

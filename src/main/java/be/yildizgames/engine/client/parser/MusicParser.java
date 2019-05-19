@@ -43,4 +43,5 @@ public interface MusicParser {
      * @return A list containing Extracted data.
      */
     List<PlayListDefinition> parse(final Path file);
+
 }

@@ -44,5 +44,4 @@ public interface GuiParser {
      * @throws ParserException If an error occurs during the parsing.
      */
     List<ContainerDefinition> parse(Path file) throws ParserException;
-
 }

@@ -36,14 +36,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Grégory Van den Borre
  */
-class LightDefinitionTest {
+public class LightDefinitionTest {
 
 
     @Nested
-    class Constructor {
+    public class Constructor {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             assertEquals("", ld.getName());
             assertEquals("point", ld.getType());
@@ -55,56 +55,56 @@ class LightDefinitionTest {
     }
 
     @Nested
-    class SetName {
+    public class SetName {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             ld.setName("aName");
             assertEquals("aName", ld.getName());
         }
 
         @Test
-        void withNull() {
+        public void withNull() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setName(null));
         }
 
         @Test
-        void empty() {
+        public void empty() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setName(""));
         }
     }
 
     @Nested
-    class SetType {
+    public class SetType {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             ld.setType("point");
             assertEquals("point", ld.getType());
         }
 
         @Test
-        void withNull() {
+        public void withNull() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setType(null));
         }
 
         @Test
-        void withInvalidType() {
+        public void withInvalidType() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setType("any"));
         }
     }
 
     @Nested
-    class SetPosition {
+    public class SetPosition {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             ld.setX("5");
             ld.setY("3");
@@ -113,106 +113,106 @@ class LightDefinitionTest {
         }
 
         @Test
-        void withNullX() {
+        public void withNullX() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setX(null));
         }
 
         @Test
-        void withNullY() {
+        public void withNullY() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setY(null));
         }
 
         @Test
-        void withNullZ() {
+        public void withNullZ() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setZ(null));
         }
 
         @Test
-        void withInvalidX() {
+        public void withInvalidX() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setX("a"));
         }
 
         @Test
-        void withInvalidY() {
+        public void withInvalidY() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setY("a"));
         }
 
         @Test
-        void withInvalidZ() {
+        public void withInvalidZ() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setZ("a"));
         }
     }
 
     @Nested
-    class SetLightMaterial {
+    public class SetLightMaterial {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             ld.setLightMaterial("aLight");
             assertEquals("aLight", ld.getLightMaterial());
         }
 
         @Test
-        void withNull() {
+        public void withNull() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setLightMaterial(null));
         }
 
         @Test
-        void empty() {
+        public void empty() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setLightMaterial(""));
         }
     }
 
     @Nested
-    class SetBurstMaterial {
+    public class SetBurstMaterial {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             ld.setBurstMaterial("burst");
             assertEquals("burst", ld.getBurstMaterial());
         }
 
         @Test
-        void withNull() {
+        public void withNull() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setBurstMaterial(null));
         }
 
         @Test
-        void empty() {
+        public void empty() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setBurstMaterial(""));
         }
     }
 
     @Nested
-    class SetHaloMaterial {
+    public class SetHaloMaterial {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             LightDefinition ld = new LightDefinition();
             ld.setHaloMaterial("halo");
             assertEquals("halo", ld.getHaloMaterial());
         }
 
         @Test
-        void withNull() {
+        public void withNull() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setHaloMaterial(null));
         }
 
         @Test
-        void empty() {
+        public void empty() {
             LightDefinition ld = new LightDefinition();
             assertThrows(IllegalArgumentException.class, () -> ld.setHaloMaterial(""));
         }

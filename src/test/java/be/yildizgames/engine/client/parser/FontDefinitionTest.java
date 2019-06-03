@@ -34,14 +34,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Grégory Van den Borre
  */
-final class FontDefinitionTest {
+public class FontDefinitionTest {
 
 
     @Nested
-    class Constructor {
+    public class Constructor {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             FontDefinition def = new FontDefinition();
             assertEquals("", def.getName());
             assertEquals("", def.getPath());
@@ -50,57 +50,57 @@ final class FontDefinitionTest {
     }
 
     @Nested
-    class SetSize {
+    public class SetSize {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             FontDefinition def = new FontDefinition();
             def.setSize("3");
             assertEquals(3, def.getSize());
         }
 
         @Test
-        void fromNull() {
+        public void fromNull() {
             FontDefinition def = new FontDefinition();
             assertThrows(IllegalArgumentException.class, () -> def.setSize(null));
         }
 
         @Test
-        void fromInvalid() {
+        public void fromInvalid() {
             FontDefinition def = new FontDefinition();
             assertThrows(IllegalArgumentException.class, () -> def.setSize("3.1"));
         }
     }
 
     @Nested
-    class SetPath {
+    public class SetPath {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             FontDefinition def = new FontDefinition();
             def.setPath("abc");
             assertEquals("abc", def.getPath());
         }
 
         @Test
-        void fromNull() {
+        public void fromNull() {
             FontDefinition def = new FontDefinition();
             assertThrows(IllegalArgumentException.class, () -> def.setPath(null));
         }
     }
 
     @Nested
-    class SetName {
+    public class SetName {
 
         @Test
-        void happyFlow() {
+        public void happyFlow() {
             FontDefinition def = new FontDefinition();
             def.setName("abc");
             assertEquals("abc", def.getName());
         }
 
         @Test
-        void fromNull() {
+        public void fromNull() {
             FontDefinition def = new FontDefinition();
             assertThrows(IllegalArgumentException.class, () -> def.setName(null));
         }

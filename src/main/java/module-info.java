@@ -32,7 +32,6 @@ module be.yildizgames.engine.client.addon.parser.xml {
     requires be.yildizgames.common.file;
     requires be.yildizgames.module.audio;
     requires be.yildizgames.common.logging;
-    requires slf4j.api;
     requires be.yildizgames.common.exception;
     requires be.yildizgames.common.util;
     requires java.xml;

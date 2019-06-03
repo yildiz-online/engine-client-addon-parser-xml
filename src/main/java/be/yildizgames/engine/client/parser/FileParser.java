@@ -34,8 +34,6 @@ import be.yildizgames.module.graphic.gui.button.ButtonMaterial;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.TextureUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -51,7 +49,7 @@ import java.util.stream.Stream;
 public final class FileParser {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileParser.class);
+    private static final System.Logger LOGGER = System.getLogger(FileParser.class.getName());
 
     /**
      * Create the parser used to read the definition scripts.
@@ -89,7 +87,7 @@ public final class FileParser {
         GuiParser guiParser = this.parserFactory.createGuiParser(this.graphicEngine.getScreenSize());
         try(Stream<Path> files = Files.walk(folder)) {
             files.filter(s -> s.toString().endsWith(".mat")).forEach(s -> {
-                LOGGER.info("Parsing material script {}", s);
+                LOGGER.log(System.Logger.Level.INFO,"Parsing material script {}", s);
                 final List<SimpleMaterialDefinition> matDef = materialParser.parse(s);
                 for (final SimpleMaterialDefinition def : matDef) {
                     final Material m = this.graphicEngine.getMaterialManager().loadSimpleTexture(def.getName(), def.getPath(), def.getTransparency());
@@ -111,7 +109,7 @@ public final class FileParser {
         }
         try(Stream<Path> files = Files.walk(folder)) {
             files.filter(s -> s.toString().endsWith(".pll")).forEach(s -> {
-                LOGGER.info("Parsing playlist script {}", s);
+                LOGGER.log(System.Logger.Level.INFO,"Parsing playlist script {}", s);
                 final List<PlayListDefinition> playListDef = musicParser.parse(s);
                 for (final PlayListDefinition def : playListDef) {
                     final Playlist p = this.soundEngine.createPlaylist(def.getName());
@@ -133,11 +131,11 @@ public final class FileParser {
 
         try(Stream<Path> files = Files.walk(folder)) {
             files.filter(s -> s.toString().endsWith(".vew")).forEach(s -> {
-                LOGGER.info("Parsing view script {}", s);
+                LOGGER.log(System.Logger.Level.INFO,"Parsing view script {}", s);
                 try {
                     guiParser.parse(s).forEach(this::buildView);
                 } catch (final ParserException pe) {
-                    LOGGER.error("Error parsing", pe);
+                    LOGGER.log(System.Logger.Level.ERROR,"Error parsing", pe);
                 }
             });
         }

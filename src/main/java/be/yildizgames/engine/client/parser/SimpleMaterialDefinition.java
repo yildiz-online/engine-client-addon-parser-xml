@@ -112,7 +112,7 @@ public final class SimpleMaterialDefinition {
      * Set the transparency value.
      *
      * @param transparencyMode New Transparent capability for the material.
-     * @throw {@link IllegalArgumentException} If the capability cannot be
+     * @throw IllegalArgumentException If the capability cannot be
      * recognized(should be "alpha" or "color" or "none").
      */
     void setTransparency(final String transparencyMode) {

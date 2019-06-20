@@ -54,12 +54,10 @@ public final class ParserFactory {
      * @return A new MusicParser.
      */
     public MusicParser createMusicParser() {
-        switch (this.parserType) {
-            case XML:
-                return new XmlMusicParser();
-            default:
-                throw new InvalidParameterException(UNKNOWN_TYPE);
+        if (this.parserType == ParserType.XML) {
+            return new XmlMusicParser();
         }
+        throw new InvalidParameterException(UNKNOWN_TYPE);
     }
 
     /**
@@ -69,12 +67,10 @@ public final class ParserFactory {
      * @return A new MaterialParser.
      */
     public MaterialParser createMaterialParser(final ScreenSize screen) {
-        switch (this.parserType) {
-            case XML:
-                return new XmlMaterialParser(screen);
-            default:
-                throw new InvalidParameterException(UNKNOWN_TYPE);
+        if (this.parserType == ParserType.XML) {
+            return new XmlMaterialParser(screen);
         }
+        throw new InvalidParameterException(UNKNOWN_TYPE);
     }
 
     /**
@@ -83,12 +79,10 @@ public final class ParserFactory {
      * @return A new FontParser.
      */
     public FontParser createFontParser() {
-        switch (this.parserType) {
-            case XML:
-                return new XmlFontParser();
-            default:
-                throw new InvalidParameterException(UNKNOWN_TYPE);
+        if (this.parserType == ParserType.XML) {
+            return new XmlFontParser();
         }
+        throw new InvalidParameterException(UNKNOWN_TYPE);
     }
 
     /**
@@ -98,12 +92,10 @@ public final class ParserFactory {
      * @return A new GuiParser.
      */
     public GuiParser createGuiParser(final ScreenSize screen) {
-        switch (this.parserType) {
-            case XML:
-                return new XmlGuiParser(screen);
-            default:
-                throw new InvalidParameterException(UNKNOWN_TYPE);
+        if (this.parserType == ParserType.XML) {
+            return new XmlGuiParser(screen);
         }
+        throw new InvalidParameterException(UNKNOWN_TYPE);
     }
 
     /**

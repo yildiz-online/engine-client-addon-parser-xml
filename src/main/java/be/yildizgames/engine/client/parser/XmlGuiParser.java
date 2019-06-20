@@ -169,111 +169,126 @@ final class XmlGuiParser implements GuiParser {
             for (int j = 0; j < itemList.getLength(); j++) {
                 final Node item = itemList.item(j);
                 final String itemName = item.getNodeName();
-                if (itemName.equals(XmlGuiParser.NODE_Z)) {
-                    def.setZ(item.getTextContent());
-                } else if (itemName.equals(XmlGuiParser.MATERIAL)) {
-                    def.setMaterial(item.getTextContent());
-                } else if (itemName.equals(XmlGuiParser.CHILDREN)) {
-                    final NodeList childrenList = item.getChildNodes();
-                    for (int k = 0; k < childrenList.getLength(); k++) {
-                        final Node child = childrenList.item(k);
-                        final String childName = child.getNodeName();
-                        if (childName.equals(XmlGuiParser.IMAGE)) {
-                            final ImageDefinition imageDef = new ImageDefinition(screen);
-                            final NodeList childItemList = child.getChildNodes();
-                            XmlGuiParser.retrieveCommonData(childItemList, imageDef);
-                            int length = childItemList.getLength();
-                            for (int l = 0; l < length; l++) {
-                                final Node childItem = childItemList.item(l);
-                                final String childItemName = childItem.getNodeName();
-                                if (childItemName.equals(XmlGuiParser.MATERIAL)) {
-                                    imageDef.setMaterial(childItem.getTextContent());
+                switch (itemName) {
+                    case XmlGuiParser.NODE_Z:
+                        def.setZ(item.getTextContent());
+                        break;
+                    case XmlGuiParser.MATERIAL:
+                        def.setMaterial(item.getTextContent());
+                        break;
+                    case XmlGuiParser.CHILDREN:
+                        final NodeList childrenList = item.getChildNodes();
+                        for (int k = 0; k < childrenList.getLength(); k++) {
+                            final Node child = childrenList.item(k);
+                            final String childName = child.getNodeName();
+                            switch (childName) {
+                                case XmlGuiParser.IMAGE: {
+                                    final ImageDefinition imageDef = new ImageDefinition(screen);
+                                    final NodeList childItemList = child.getChildNodes();
+                                    XmlGuiParser.retrieveCommonData(childItemList, imageDef);
+                                    int length = childItemList.getLength();
+                                    for (int l = 0; l < length; l++) {
+                                        final Node childItem = childItemList.item(l);
+                                        final String childItemName = childItem.getNodeName();
+                                        if (childItemName.equals(XmlGuiParser.MATERIAL)) {
+                                            imageDef.setMaterial(childItem.getTextContent());
+                                        }
+                                    }
+                                    def.addImage(imageDef);
+                                    break;
                                 }
-                            }
-                            def.addImage(imageDef);
-                        } else if (childName.equals(XmlGuiParser.TEXT_LINE)) {
-                            final TextLineDefinition textLineDef = new TextLineDefinition(this.screen);
-                            final NodeList childItemList = child.getChildNodes();
-                            XmlGuiParser.retrieveCommonData(childItemList, textLineDef);
-                            int length = childItemList.getLength();
-                            for (int l = 0; l < length; l++) {
-                                final Node childItem = childItemList.item(l);
-                                final String childItemName = childItem.getNodeName();
-                                if (childItemName.equals(XmlGuiParser.FONT)) {
-                                    textLineDef.setFont(childItem.getTextContent());
+                                case XmlGuiParser.TEXT_LINE: {
+                                    final TextLineDefinition textLineDef = new TextLineDefinition(this.screen);
+                                    final NodeList childItemList = child.getChildNodes();
+                                    XmlGuiParser.retrieveCommonData(childItemList, textLineDef);
+                                    int length = childItemList.getLength();
+                                    for (int l = 0; l < length; l++) {
+                                        final Node childItem = childItemList.item(l);
+                                        final String childItemName = childItem.getNodeName();
+                                        if (childItemName.equals(XmlGuiParser.FONT)) {
+                                            textLineDef.setFont(childItem.getTextContent());
+                                        }
+                                    }
+                                    def.addTextLine(textLineDef);
+                                    break;
                                 }
-                            }
-                            def.addTextLine(textLineDef);
-                        } else if (childName.equals(XmlGuiParser.BUTTON)) {
-                            String material = "";
-                            String highlight = "";
-                            String font = "";
-                            final NodeList childItemList = child.getChildNodes();
+                                case XmlGuiParser.BUTTON: {
+                                    String material = "";
+                                    String highlight = "";
+                                    String font = "";
+                                    final NodeList childItemList = child.getChildNodes();
 
-                            int length = childItemList.getLength();
-                            for (int l = 0; l < length; l++) {
-                                final Node childItem = childItemList.item(l);
-                                switch (childItem.getNodeName()) {
-                                    case XmlGuiParser.MATERIAL:
-                                        material = childItem.getTextContent();
-                                        break;
-                                    case XmlGuiParser.MATERIAL_H:
-                                        highlight = childItem.getTextContent();
-                                        break;
-                                    case XmlGuiParser.FONT:
-                                        font = childItem.getTextContent();
-                                        break;
-                                    default:
-                                        throw new ParserException("Invalid node: " + childItem.getNodeName());
+                                    int length = childItemList.getLength();
+                                    for (int l = 0; l < length; l++) {
+                                        final Node childItem = childItemList.item(l);
+                                        switch (childItem.getNodeName()) {
+                                            case XmlGuiParser.MATERIAL:
+                                                material = childItem.getTextContent();
+                                                break;
+                                            case XmlGuiParser.MATERIAL_H:
+                                                highlight = childItem.getTextContent();
+                                                break;
+                                            case XmlGuiParser.FONT:
+                                                font = childItem.getTextContent();
+                                                break;
+                                            default:
+                                                throw new ParserException("Invalid node: " + childItem.getNodeName());
+                                        }
+                                    }
+                                    final ButtonDefinition buttonDef = new ButtonDefinition(material, highlight, font, this.screen);
+                                    XmlGuiParser.retrieveCommonData(childItemList, buttonDef);
+                                    def.addButton(buttonDef);
+                                    break;
                                 }
-                            }
-                            final ButtonDefinition buttonDef = new ButtonDefinition(material, highlight, font, this.screen);
-                            XmlGuiParser.retrieveCommonData(childItemList, buttonDef);
-                            def.addButton(buttonDef);
-                        } else if (childName.equals(XmlGuiParser.INPUT_BOX)) {
-                            final NodeList childItemList = child.getChildNodes();
-                            String material = "";
-                            String highlight = "";
-                            String font = "";
+                                case XmlGuiParser.INPUT_BOX: {
+                                    final NodeList childItemList = child.getChildNodes();
+                                    String material = "";
+                                    String highlight = "";
+                                    String font = "";
 
-                            int length = childItemList.getLength();
-                            for (int l = 0; l < length; l++) {
-                                final Node childItem = childItemList.item(l);
-                                switch (childItem.getNodeName()) {
-                                    case XmlGuiParser.MATERIAL:
-                                        material = childItem.getTextContent();
-                                        break;
-                                    case XmlGuiParser.MATERIAL_H:
-                                        highlight = childItem.getTextContent();
-                                        break;
-                                    case XmlGuiParser.FONT:
-                                        font = childItem.getTextContent();
-                                        break;
-                                    default:
-                                        break;
+                                    int length = childItemList.getLength();
+                                    for (int l = 0; l < length; l++) {
+                                        final Node childItem = childItemList.item(l);
+                                        switch (childItem.getNodeName()) {
+                                            case XmlGuiParser.MATERIAL:
+                                                material = childItem.getTextContent();
+                                                break;
+                                            case XmlGuiParser.MATERIAL_H:
+                                                highlight = childItem.getTextContent();
+                                                break;
+                                            case XmlGuiParser.FONT:
+                                                font = childItem.getTextContent();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                    final InputBoxDefinition inputDef = new InputBoxDefinition(Material.get(material), Material.get(highlight),
+                                            Font.get(font), this.screen);
+                                    XmlGuiParser.retrieveCommonData(childItemList, inputDef);
+                                    def.addInputBox(inputDef);
+                                    break;
+                                }
+                                case XmlGuiParser.TEXT_AREA: {
+                                    final TextAreaDefinition textAreaDef = new TextAreaDefinition(screen);
+                                    final NodeList childItemList = child.getChildNodes();
+                                    XmlGuiParser.retrieveCommonData(childItemList, textAreaDef);
+                                    int length = childItemList.getLength();
+                                    for (int l = 0; l < length; l++) {
+                                        final Node childItem = childItemList.item(l);
+                                        final String childItemName = childItem.getNodeName();
+                                        if (childItemName.equals(XmlGuiParser.MATERIAL)) {
+                                            textAreaDef.setMaterial(childItem.getTextContent());
+                                        } else if (childItemName.equals(XmlGuiParser.FONT)) {
+                                            textAreaDef.setFont(childItem.getTextContent());
+                                        }
+                                    }
+                                    def.addTextArea(textAreaDef);
+                                    break;
                                 }
                             }
-                            final InputBoxDefinition inputDef = new InputBoxDefinition(Material.get(material), Material.get(highlight),
-                                    Font.get(font), this.screen);
-                            XmlGuiParser.retrieveCommonData(childItemList, inputDef);
-                            def.addInputBox(inputDef);
-                        } else if (childName.equals(XmlGuiParser.TEXT_AREA)) {
-                            final TextAreaDefinition textAreaDef = new TextAreaDefinition(screen);
-                            final NodeList childItemList = child.getChildNodes();
-                            XmlGuiParser.retrieveCommonData(childItemList, textAreaDef);
-                            int length = childItemList.getLength();
-                            for (int l = 0; l < length; l++) {
-                                final Node childItem = childItemList.item(l);
-                                final String childItemName = childItem.getNodeName();
-                                if (childItemName.equals(XmlGuiParser.MATERIAL)) {
-                                    textAreaDef.setMaterial(childItem.getTextContent());
-                                } else if (childItemName.equals(XmlGuiParser.FONT)) {
-                                    textAreaDef.setFont(childItem.getTextContent());
-                                }
-                            }
-                            def.addTextArea(textAreaDef);
                         }
-                    }
+                        break;
                 }
             }
             resultList.add(def);
